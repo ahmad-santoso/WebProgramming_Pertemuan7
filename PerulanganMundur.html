@@ -6,6 +6,30 @@
     <title>Perulangan Mundur</title>
 </head>
 <body>
-    
+    <h1>Buat Perulangan Mundur dari bilangan terbesar ke kecil:</h1>
+    <hr>
+    <div id="result" style="padding: 0;"></div>
+
+    <script>
+        // Fungsi membuat perulangan mundur
+        function showPerulangan() {
+            var resultDiv = document.getElementById("result");
+            var output = "";
+
+            for (var i = 10; i >= 1; i--) {
+                if (i === 1) {
+                    output += "<h2>Anak Ayam Turun 1 mati 1 tinggal INDUKNYA</h2>";
+                } else {
+                    output += "<h2>Anak Ayam Turun " + i + " mati 1 tinggal " + (i - 1) + "</h2>";
+                }
+            }
+            resultDiv.innerHTML = output;
+        }
+
+        // Memanggil fungsi 
+        window.onload = function() {
+            showPerulangan();
+        };
+    </script>
 </body>
 </html>
