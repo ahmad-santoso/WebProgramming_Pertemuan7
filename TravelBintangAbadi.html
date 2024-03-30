@@ -5,67 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Bintang Abadi</title>
     <style>
+        form {
+            margin: 2px;
+            border: 1px solid #e3e6e8;
+            padding: 10px 20px 60px 20px;
+            box-shadow: 2px 2px 7px 1px e3e6e8;
+            max-width: 600px; 
+            margin: auto; 
+        }
+        table.container {
+            border: 1px solid black;
+            margin-bottom: 10px;
+            margin-left: 0;
+            margin: 0; 
+            width: 580px; 
+            height: 40px;
+            text-align: center; 
+            padding-bottom: 20px;
+        }
+        table.container th h3 {
+            margin: 0; 
+        }
+        table.right {
+            border-collapse: collapse;
+            display: flex; 
+            vertical-align: top;
+            margin: 0;
+            padding: 0;
+        }
+        table.left {
+            border-collapse: collapse;
+            vertical-align: top;
+            margin: 0;
+            padding: 0;
+        }
+        table.button {
+            border: 1px solid black;
+            clear: both;
+            margin: 0;
+            padding-right: 233px;
+        }
+        table.right td, table.left td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        .clear {
+            clear: both;
+        }
     </style>
 </head>
 <body>
-    <table class="container">
-        <th>
-            <h3>Travel Bintang Abadi</h3>
-        </th>
-    </table>
+    <form>
+        <table class="container">
+            <tr>
+                <th colspan="2">
+                    <h1>Travel Bintang Abadi</h1>
+                </th>
+            </tr>
+        </table>
+        
+        <table class="right">
+            <tr>
+                <td>
+                    <p>
+                        <label for="nama">Nama :</label>
+                        <input type="text" id="nama" name="nama" value="">
+                    </p>
+                    <p>
+                        <label for="tujuan">Tujuan :</label>
+                        <select name="tujuan" id="tujuan">
+                            <option value="Cirebon">Cirebon</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="jml_tiket">Jumlah Tiket :</label>
+                        <input type="text" id="jml_tiket" name="jml_tiket" value="">
+                    </p>
+                    <p>
+                        <label for="member">Member :</label>
+                        <input type="checkbox" id="member" name="member" value="">Ya
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        <label for="hrg_tiket">Harga Tiket :</label>
+                        <input type="text" id="hrg_tiket" name="hrg_tiket" value="">
+                    </p>
+                    <p>
+                        <label for="sub_total">Sub Total :</label>
+                        <input type="text" id="sub_total" name="sub_total" value="">
+                    </p>
+                    <p>
+                        <label for="diskon">Diskon :</label>
+                        <input type="text" id="diskon" name="diskon" value="">
+                    </p>
+                    <p>
+                        <label for="total_bayar">Total Bayar :</label>
+                        <input type="text" id="total_bayar" name="total_bayar" value="">
+                    </p>
+                </td>
+            </tr>    
+        </table>
     
-    <table class="right">
-        <tr>
-            <td>
-                <p>
-                    <label for="nama">Nama :</label>
-                    <input type="text" id="nama" name="nama" value="">
-                </p>
-                <p>
-                    <label for="tujuan">Tujuan :</label>
-                    <select name="tujuan" id="tujuan">
-                        <option value="Cirebon">Cirebon</option>
-                    </select>
-                </p>
-                <p>
-                    <label for="jml_tiket">Jumlah Tiket :</label>
-                    <input type="text" id="jml_tiket" name="jml_tiket" value="">
-                </p>
-                <p>
-                    <label for="member">Member :</label>
-                    <input type="checkbox" id="member" name="member" value="">Ya
-                </p>
-            </td>
-        </tr>    
-    </table>
+        <div class="clear"></div>
+    
+        <table class="button">
+            <tr>
+                <td>
+                    <input type="button" value="Hitung" style="margin-left: 230px;" onclick="hitung()">
+                </td>
+                <td>
+                    <input type="button" value="Ulang" onclick="ulang()">
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Done">
+    </form>
 
-    <table class="left">
-        <tr>
-            <td style="border: 10px; border-color: black;">
-                <p>
-                    <label for="hrg_tiket">Harga Tiket :</label>
-                    <input type="text" id="hrg_tiket" name="hrg_tiket" value="">
-                </p>
-                <p>
-                    <label for="sub_total">Sub Total :</label>
-                    <input type="text" id="sub_total" name="sub_total" value="">
-                </p>
-                <p>
-                    <label for="diskon">Diskon :</label>
-                    <input type="text" id="diskon" name="diskon" value="">
-                </p>
-                <p>
-                    <label for="total_bayar">Total Bayar :</label>
-                    <input type="text" id="total_bayar" name="total_bayar" value="">
-                </p>
-            </td>
-        </tr>
-    </table>
+    <script>
+        function hitung() {
+            let hargaTiket = parseFloat(document.getElementById("hrg_tiket").value);
+            let jumlahTiket = parseFloat(document.getElementById("jml_tiket").value);
+            let subTotal = hargaTiket * jumlahTiket;
+            let diskon = parseFloat(document.getElementById("diskon").value);
+            let memberChecked = document.getElementById("member").checked;
 
-    <table class="button">
-        <input type="submit" value="Hitung">
-        <input type="submit" value="Ulang">
-    </table>
-    <input type="submit" value="Done">
+            if (memberChecked) {
+                diskon = subTotal * (diskon / 100);
+            } else {
+                diskon = 0;
+            }
+
+            let totalBayar = subTotal - diskon;
+
+            document.getElementById("sub_total").value = subTotal;
+            document.getElementById("diskon_value").value = diskon; // Ganti id dengan diskon_value
+            document.getElementById("total_bayar_value").value = totalBayar; // Ganti id dengan total_bayar_value
+        }
+
+        function ulang() {
+            document.getElementById("nama").value = "";
+            document.getElementById("tujuan").selectedIndex = 0;
+            document.getElementById("jml_tiket").value = "";
+            document.getElementById("member").checked = false;
+            document.getElementById("hrg_tiket").value = "";
+            document.getElementById("sub_total").value = "";
+            document.getElementById("diskon").value = "";
+            document.getElementById("total_bayar").value = "";
+        }
+    </script>
 </body>
 </html>
